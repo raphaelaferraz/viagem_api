@@ -9,7 +9,7 @@ namespace viagem_api.Controllers;
 [Route("[controller]")]
 public class DepoimentoController : ControllerBase
 {
-    public List<Depoimento> data = new List<Depoimento>();
+    private static List<Depoimento> data = new List<Depoimento>();
 
     private IMapper _mapper;
 
@@ -27,5 +27,11 @@ public class DepoimentoController : ControllerBase
         data.Add(depoimento);
 
         return data;
+    }
+
+    [HttpGet]
+    public List<ReadDepoimentoDto> ListaDepoimentos()
+    {
+        return _mapper.Map<List<ReadDepoimentoDto>>(data); // Retorna diretamente a lista estática
     }
 }
