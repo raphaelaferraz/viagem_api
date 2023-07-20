@@ -10,8 +10,6 @@ namespace viagem_api.Controllers;
 [Route("[controller]")]
 public class DepoimentoController : ControllerBase
 {
-    private static List<Depoimento> data = new List<Depoimento>();
-
     private ViagemContext _context;
 
     private IMapper _mapper;
