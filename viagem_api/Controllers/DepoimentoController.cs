@@ -40,4 +40,21 @@ public class DepoimentoController : ControllerBase
     {
         return _mapper.Map<List<ReadDepoimentoDto>>(_context.Depoimento.ToList());
     }
+
+    [HttpPut("{id}")]
+    public IActionResult AtualizaDepoimento(int id, [FromBody] UpdateDepoimentoDto depoimentoDto)
+    {
+        Depoimento depoimento = _context.Depoimento.FirstOrDefault(depoimento => depoimento.Id == id);
+
+        if(depoimento == null)
+        {
+            return NotFound();
+        }
+
+        _mapper.Map(depoimentoDto, depoimento);
+
+        _context.SaveChanges();
+
+        return NoContent();
+    }
 }
