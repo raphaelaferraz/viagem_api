@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using viagem_api.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// String de conexão com o banco de dados 
+var connectionString = builder.Configuration.GetConnectionString("ViagemConnection");
 
 // Add services to the container.
 
@@ -9,6 +15,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Adição dos serviços do NPGSQL
+builder.Services.AddDbContext<ViagemContext>(configuracoes =>
+    configuracoes.UseLazyLoadingProxies().UseNpgsql(connectionString));
 
 var app = builder.Build();
 
