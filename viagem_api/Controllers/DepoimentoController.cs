@@ -57,4 +57,21 @@ public class DepoimentoController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeletaDepoimento(int id)
+    {
+        Depoimento depoimento = _context.Depoimento.FirstOrDefault(depoimento => depoimento.Id == id);
+
+        if (depoimento == null)
+        {
+            return NotFound();
+        }
+
+        _context.Remove(depoimento);
+
+        _context.SaveChanges();
+
+        return NoContent();
+    }
 }
