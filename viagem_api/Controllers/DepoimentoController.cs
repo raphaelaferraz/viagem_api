@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using viagem_api.Data;
 using viagem_api.Data.Dtos;
 using viagem_api.Models;
 
@@ -11,27 +12,32 @@ public class DepoimentoController : ControllerBase
 {
     private static List<Depoimento> data = new List<Depoimento>();
 
+    private ViagemContext _context;
+
     private IMapper _mapper;
 
-    public DepoimentoController(IMapper mapper)
+    public DepoimentoController(IMapper mapper, ViagemContext context)
     {
         _mapper = mapper;
+        _context = context;
     }
 
     [HttpPost]
-    public List<Depoimento> AdicionaDepoimento(CreateDepoimentoDto depoimentoDto)
+    public IActionResult AdicionaDepoimento(CreateDepoimentoDto depoimentoDto)
     {
         
         var depoimento = _mapper.Map<Depoimento>(depoimentoDto);
 
-        data.Add(depoimento);
+        _context.Depoimento.Add(depoimento);
 
-        return data;
+        _context.SaveChanges();
+
+        return CreatedAtAction(nameof(ListaDepoimentos), new {id = depoimento.Id}, depoimento);
     }
 
     [HttpGet]
-    public List<ReadDepoimentoDto> ListaDepoimentos()
+    public IEnumerable<ReadDepoimentoDto> ListaDepoimentos()
     {
-        return _mapper.Map<List<ReadDepoimentoDto>>(data);
+        return _mapper.Map<List<ReadDepoimentoDto>>(_context.Depoimento.ToList());
     }
 }
