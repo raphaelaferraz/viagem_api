@@ -9,7 +9,8 @@ namespace viagem_api.Controllers;
 [Route("[controller]")]
 public class DepoimentoController : ControllerBase
 {
-    private List<dynamic> _data;
+    public List<Depoimento> data = new List<Depoimento>();
+
     private IMapper _mapper;
 
     public DepoimentoController(IMapper mapper)
@@ -18,12 +19,13 @@ public class DepoimentoController : ControllerBase
     }
 
     [HttpPost]
-    public List<dynamic> AdicionaDepoimento(CreateDepoimentoDto depoimentoDto)
+    public List<Depoimento> AdicionaDepoimento(CreateDepoimentoDto depoimentoDto)
     {
+        
         var depoimento = _mapper.Map<Depoimento>(depoimentoDto);
 
-        _data.Add(depoimento);
+        data.Add(depoimento);
 
-        return _data;
+        return data;
     }
 }
