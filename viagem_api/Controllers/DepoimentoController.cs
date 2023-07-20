@@ -32,6 +32,6 @@ public class DepoimentoController : ControllerBase
     [HttpGet]
     public List<ReadDepoimentoDto> ListaDepoimentos()
     {
-        return _mapper.Map<List<ReadDepoimentoDto>>(data); // Retorna diretamente a lista estática
+        return _mapper.Map<List<ReadDepoimentoDto>>(data);
     }
 }
