@@ -11,4 +11,6 @@ public class ViagemContext : DbContext
     }
 
     public DbSet<Depoimento> Depoimento { get; set; }
+
+    public DbSet<Destino> Destino { get; set; }
 }
