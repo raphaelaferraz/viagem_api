@@ -10,4 +10,7 @@ public class CreateDestinoDto
 
     [Required(ErrorMessage = "O preço do destino é obrigatório.")]
     public decimal Preco { get; set; }
+
+    [Required(ErrorMessage = "A foto do destino é obrigatória.")]
+    public string UrlFoto { get; set; }
 }
