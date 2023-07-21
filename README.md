@@ -10,7 +10,7 @@
 
 ## Principais funcionalidades ⚙️
 
-- [ ] Cadastro, atualização e deleção de um Depoimento
+- [x] Cadastro, atualização e deleção de um Depoimento
 </br></br>
 
 ## Status do Projeto 🎯
