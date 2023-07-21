@@ -34,9 +34,27 @@ public class DepoimentoController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<ReadDepoimentoDto> ListaDepoimentos()
+    public IActionResult ListaDepoimentos()
     {
-        return _mapper.Map<List<ReadDepoimentoDto>>(_context.Depoimento.ToList());
+        List<Depoimento> depoimentos = _context.Depoimento.ToList();
+
+        if (depoimentos.Count == 0) return NotFound();
+
+        List<ReadDepoimentoDto> depoimentoDto = _mapper.Map<List<ReadDepoimentoDto>>(depoimentos);
+
+        return Ok(depoimentoDto);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult ListaDepoimentosPorId(int id)
+    {
+        Depoimento depoimento = _context.Depoimento.FirstOrDefault(depoimento => depoimento.Id == id);
+
+        if (depoimento == null) return NotFound();
+
+        ReadDepoimentoDto depoimentoDto = _mapper.Map<ReadDepoimentoDto>(depoimento);
+
+        return Ok(depoimentoDto);
     }
 
     [HttpPut("{id}")]
