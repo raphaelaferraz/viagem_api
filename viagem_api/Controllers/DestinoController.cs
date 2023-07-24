@@ -44,6 +44,18 @@ public class DestinoController : ControllerBase
         return Ok(destinoDto);
     }
 
+    [HttpGet("{id}")]
+    public IActionResult ListaDestinosPorId(int id)
+    {
+        var destino = _context.Destino.FirstOrDefault(destino => destino.Id == id);
+
+        if (destino == null) return NotFound();
+
+        ReadDestinoDto destinoDto = _mapper.Map<ReadDestinoDto>(destino);
+
+        return Ok(destinoDto);
+    }
+
     [HttpPut("{id}")]
     public IActionResult AtualizaDestino(int id, [FromBody] UpdateDestinoDto destinoDto)
     {
