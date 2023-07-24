@@ -32,4 +32,16 @@ public class DestinoController : ControllerBase
         return CreatedAtAction(nameof(ListaDestinos), new { id = destino.Id }, destino);
     }
 
+    [HttpGet]
+    public IActionResult ListaDestinos()
+    {
+        List<viagem_api.Models.Destino> destinos = _context.Destino.ToList();
+
+        if (destinos.Count == 0) return NotFound();
+
+        List<ReadDestinoDto> destinoDto = _mapper.Map<List<ReadDestinoDto>>(destinos);
+
+        return Ok(destinoDto);
+    }
+
 }
