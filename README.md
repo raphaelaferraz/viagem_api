@@ -11,6 +11,10 @@
 ## Principais funcionalidades ⚙️
 
 - [x] Cadastro, atualização e deleção de um Depoimento
+- [x] Listagem de Depoimentos por Id
+- [x] Cadastro, atualização e deleção de um Destino
+- [x] Listagem de Destino por Id
+- [x] Listagem de Destino por nome
 </br></br>
 
 ## Status do Projeto 🎯
