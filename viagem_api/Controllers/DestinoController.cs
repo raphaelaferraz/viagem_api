@@ -47,7 +47,7 @@ public class DestinoController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult AtualizaDestino(int id, [FromBody] UpdateDestinoDto destinoDto)
     {
-        var destino = _context.Depoimento.FirstOrDefault(destino => destino.Id == id);
+        var destino = _context.Destino.FirstOrDefault(destino => destino.Id == id);
 
         if (destino == null) return NotFound();
 
@@ -58,4 +58,17 @@ public class DestinoController : ControllerBase
         return NoContent();
     }
 
+    [HttpDelete("{id}")]
+    public IActionResult DeletaDestino(int id)
+    {
+        var destino = _context.Destino.FirstOrDefault(destino => destino.Id == id);
+
+        if (destino == null) return NotFound();
+
+        _context.Remove(destino);
+
+        _context.SaveChanges();
+
+        return NoContent();
+    }
 }
