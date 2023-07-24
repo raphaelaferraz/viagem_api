@@ -45,6 +45,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
 app.UseCors();
 
 app.Run();

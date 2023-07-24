@@ -32,7 +32,7 @@ public class DestinoController : ControllerBase
         return CreatedAtAction(nameof(ListaDestinos), new { id = destino.Id }, destino);
     }
 
-    [HttpGet]
+    [HttpGet("lista")]
     public IActionResult ListaDestinos()
     {
         List<viagem_api.Models.Destino> destinos = _context.Destino.ToList();
@@ -55,6 +55,30 @@ public class DestinoController : ControllerBase
 
         return Ok(destinoDto);
     }
+
+    [HttpGet]
+    public IActionResult BuscaDestino([FromQuery] string nomeDestino)
+    {
+        if (string.IsNullOrEmpty(nomeDestino))
+            return BadRequest("O destino não foi passado");
+
+        var destinoEncontrado = _context.Destino
+            .Where(destino => destino.Nome.ToLower() == nomeDestino.ToLower())
+            .Select(destinoDto => new ReadDestinoDto
+            {
+                Nome = destinoDto.Nome,
+                Preco = destinoDto.Preco,
+                UrlFoto = destinoDto.UrlFoto
+            })
+            .SingleOrDefault();
+
+        if (destinoEncontrado == null)
+            return NotFound();
+
+        return Ok(destinoEncontrado);
+    }
+
+
 
     [HttpPut("{id}")]
     public IActionResult AtualizaDestino(int id, [FromBody] UpdateDestinoDto destinoDto)
