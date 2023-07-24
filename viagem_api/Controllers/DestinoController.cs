@@ -44,4 +44,18 @@ public class DestinoController : ControllerBase
         return Ok(destinoDto);
     }
 
+    [HttpPut("{id}")]
+    public IActionResult AtualizaDestino(int id, [FromBody] UpdateDestinoDto destinoDto)
+    {
+        var destino = _context.Depoimento.FirstOrDefault(destino => destino.Id == id);
+
+        if (destino == null) return NotFound();
+
+        _mapper.Map(destinoDto, destino);
+
+        _context.SaveChanges();
+
+        return NoContent();
+    }
+
 }
