@@ -68,7 +68,10 @@ public class DestinoController : ControllerBase
             {
                 Nome = destinoDto.Nome,
                 Preco = destinoDto.Preco,
-                UrlFoto = destinoDto.UrlFoto
+                UrlFoto1 = destinoDto.UrlFoto1,
+                UrlFoto2 = destinoDto.UrlFoto2,
+                Meta = destinoDto.Meta,
+                TextoDescritivo = destinoDto.TextoDescritivo
             })
             .SingleOrDefault();
 

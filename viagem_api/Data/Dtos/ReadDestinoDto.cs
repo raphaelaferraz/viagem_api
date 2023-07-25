@@ -8,5 +8,11 @@ public class ReadDestinoDto
 
     public decimal Preco { get; set; }
 
-    public string UrlFoto { get; set; }
+    public string UrlFoto1 { get; set; }
+
+    public string UrlFoto2 { get; set; }
+
+    public string Meta { get; set; }
+
+    public string TextoDescritivo { get; set; }
 }

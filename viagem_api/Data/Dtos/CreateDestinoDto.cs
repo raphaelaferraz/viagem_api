@@ -12,5 +12,13 @@ public class CreateDestinoDto
     public decimal Preco { get; set; }
 
     [Required(ErrorMessage = "A foto do destino é obrigatória.")]
-    public string UrlFoto { get; set; }
+    public string UrlFoto1 { get; set; }
+
+    [Required(ErrorMessage = "A foto do destino é obrigatória.")]
+    public string UrlFoto2 { get; set; }
+
+    [StringLength(160, ErrorMessage = "A meta deve ter apenas 160 caracteres.")]
+    public string Meta { get; set; }
+
+    public string TextoDescritivo { get; set; }
 }

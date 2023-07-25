@@ -52,7 +52,12 @@ public class DestinoTest
         // Arrange - Configuração do ambiente para o teste
         var destinos = new List<Destino>
         {
-            new Destino { Nome = "Destino 1", UrlFoto = "foto.png", Preco = 50}
+            new Destino { Nome = "Destino 1",
+            UrlFoto1 = "Foto.png",
+            UrlFoto2 = "Foto2.png",
+            Preco = 50,
+            Meta = "Meta destino 1",
+            TextoDescritivo = "Texto descritivo destino 1"}
         };
 
         _context.Destino.AddRange(destinos);
@@ -81,8 +86,11 @@ public class DestinoTest
         var destino = new Destino
         {
             Nome = "Destino 1",
-            UrlFoto = "Foto.png",
-            Preco = 50
+            UrlFoto1 = "Foto.png",
+            UrlFoto2 = "Foto2.png",
+            Preco = 50,
+            Meta = "Meta destino 1",
+            TextoDescritivo = "Texto descritivo destino 1"
         };
 
         _context.Destino.Add(destino);
@@ -101,7 +109,10 @@ public class DestinoTest
         var destinoDto = resultadoOk.Value as ReadDestinoDto;
         Assert.IsNotNull(destinoDto);
         Assert.AreEqual(destino.Nome, destinoDto.Nome);
-        Assert.AreEqual(destino.UrlFoto, destinoDto.UrlFoto);
+        Assert.AreEqual(destino.UrlFoto1, destinoDto.UrlFoto1);
+        Assert.AreEqual(destino.UrlFoto2, destinoDto.UrlFoto2);
+        Assert.AreEqual(destino.Meta, destinoDto.Meta);
+        Assert.AreEqual(destino.TextoDescritivo, destinoDto.TextoDescritivo);
         Assert.AreEqual(destino.Preco, destinoDto.Preco);
     }
 
@@ -126,8 +137,11 @@ public class DestinoTest
         var destino = new Destino
         {
             Nome = "Destino 1",
-            UrlFoto = "foto.png",
-            Preco = 50
+            UrlFoto1 = "Foto.png",
+            UrlFoto2 = "Foto2.png",
+            Preco = 50,
+            Meta = "Meta destino 1",
+            TextoDescritivo = "Texto descritivo destino 1"
         };
 
         _context.Destino.Add(destino);
@@ -167,9 +181,12 @@ public class DestinoTest
         // Arrange 
         var destinoDto = new CreateDestinoDto
         {
-            Nome = "Destino",
-            UrlFoto = "foto.png",
-            Preco = 50
+            Nome = "Destino 1",
+            UrlFoto1 = "Foto.png",
+            UrlFoto2 = "Foto2.png",
+            Preco = 50,
+            Meta = "Meta destino 1",
+            TextoDescritivo = "Texto descritivo destino 1"
         };
 
         // Act 
@@ -184,13 +201,19 @@ public class DestinoTest
         var destinoDtoResultado = resultadoDeCriacao.Value as Destino;
         Assert.IsNotNull(destinoDtoResultado);
         Assert.AreEqual(destinoDto.Nome, destinoDtoResultado.Nome);
-        Assert.AreEqual(destinoDto.UrlFoto, destinoDtoResultado.UrlFoto);
+        Assert.AreEqual(destinoDto.UrlFoto1, destinoDtoResultado.UrlFoto1);
+        Assert.AreEqual(destinoDto.UrlFoto2, destinoDtoResultado.UrlFoto2);
+        Assert.AreEqual(destinoDto.Meta, destinoDtoResultado.Meta);
+        Assert.AreEqual(destinoDto.TextoDescritivo, destinoDtoResultado.TextoDescritivo);
         Assert.AreEqual(destinoDto.Preco, destinoDtoResultado.Preco);
 
         // Verifica se o destino foi adicionado ao contexto de banco de dados
         Assert.AreEqual(1, _context.Destino.Count());
         Assert.AreEqual(destinoDto.Nome, _context.Destino.First().Nome);
-        Assert.AreEqual(destinoDto.UrlFoto, _context.Destino.First().UrlFoto);
+        Assert.AreEqual(destinoDto.UrlFoto1, _context.Destino.First().UrlFoto1);
+        Assert.AreEqual(destinoDto.UrlFoto2, _context.Destino.First().UrlFoto2);
+        Assert.AreEqual(destinoDto.Meta, _context.Destino.First().Meta);
+        Assert.AreEqual(destinoDto.TextoDescritivo, _context.Destino.First().TextoDescritivo);
         Assert.AreEqual(destinoDto.Preco, _context.Destino.First().Preco);
     }
 
@@ -202,9 +225,12 @@ public class DestinoTest
         var destino = new Destino
         {
             Id = destinoId,
-            Nome = "Destino",
-            UrlFoto = "foto.png",
-            Preco = 50
+            Nome = "Destino 1",
+            UrlFoto1 = "Foto.png",
+            UrlFoto2 = "Foto2.png",
+            Preco = 50,
+            Meta = "Meta destino 1",
+            TextoDescritivo = "Texto descritivo destino 1"
         };
 
         _context.Destino.Add(destino);
@@ -213,9 +239,12 @@ public class DestinoTest
 
         var destinoUpdateDto = new UpdateDestinoDto
         {
-            Nome = "Nome destino atualizado",
-            UrlFoto = "foto-atualizada.png",
-            Preco = 100
+            Nome = "Destino 1 atualizado",
+            UrlFoto1 = "Foto.png",
+            UrlFoto2 = "Foto2.png",
+            Preco = 50,
+            Meta = "Meta destino 1",
+            TextoDescritivo = "Texto descritivo destino 1"
         };
 
         // Act
@@ -228,7 +257,10 @@ public class DestinoTest
         var destinoAtualizado = _context.Destino.FirstOrDefault(destino => destino.Id == destinoId);
         Assert.IsNotNull(destinoAtualizado);
         Assert.AreEqual(destinoUpdateDto.Nome, destinoAtualizado.Nome);
-        Assert.AreEqual(destinoUpdateDto.UrlFoto, destinoAtualizado.UrlFoto);
+        Assert.AreEqual(destinoUpdateDto.UrlFoto1, destinoAtualizado.UrlFoto1);
+        Assert.AreEqual(destinoUpdateDto.UrlFoto2, destinoAtualizado.UrlFoto2);
+        Assert.AreEqual(destinoUpdateDto.Meta, destinoAtualizado.Meta);
+        Assert.AreEqual(destinoUpdateDto.TextoDescritivo, destinoAtualizado.TextoDescritivo);
         Assert.AreEqual(destinoUpdateDto.Preco, destinoAtualizado.Preco);
     }
 
@@ -239,9 +271,12 @@ public class DestinoTest
         var destinoId = 1;
         var destinoUpdate = new UpdateDestinoDto
         {
-            Nome = "Destino",
-            UrlFoto = "foto.png",
-            Preco = 50
+            Nome = "Destino 1 atualizado",
+            UrlFoto1 = "Foto.png",
+            UrlFoto2 = "Foto2.png",
+            Preco = 50,
+            Meta = "Meta destino 1",
+            TextoDescritivo = "Texto descritivo destino 1"
         };
 
         // Act 
@@ -258,9 +293,12 @@ public class DestinoTest
         var destinoId = 1;
         var destino = new Destino
         {
-            Nome = "Destino",
-            UrlFoto = "foto.png",
-            Preco = 50
+            Nome = "Destino 1",
+            UrlFoto1 = "Foto.png",
+            UrlFoto2 = "Foto2.png",
+            Preco = 50,
+            Meta = "Meta destino 1",
+            TextoDescritivo = "Texto descritivo destino 1"
         };
 
         _context.Destino.Add(destino);
