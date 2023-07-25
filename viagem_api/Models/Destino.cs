@@ -24,5 +24,5 @@ public class Destino
     [StringLength(160, ErrorMessage = "A meta deve ter apenas 160 caracteres.")]
     public string Meta { get; set; }
 
-    public string TextoDescritivo { get; set; }
+    public string? TextoDescritivo { get; set; }
 }
